@@ -1,0 +1,29 @@
+CREATE TABLE Ramo (
+    id_Ramo INTEGER PRIMARY KEY,
+    nombreRamo TEXT NOT NULL,
+    codigoRamo TEXT UNIQUE NOT NULL,
+    creditos INTEGER NOT NULL,
+    esElectivo TEXT NOT NULL 
+);
+
+CREATE TABLE Prerequisito (
+    id_Prerequisito INTEGER PRIMARY KEY,
+    id_Ramo INTEGER NOT NULL,
+    id_RamoRequisito INTEGER NOT NULL,
+    FOREIGN KEY (id_Ramo) REFERENCES Ramo(id_Ramo),
+    FOREIGN KEY (id_RamoRequisito) REFERENCES Ramo(id_Ramo)
+);
+
+CREATE TABLE Electivo (
+    id_Electivo INTEGER PRIMARY KEY,
+    nombreElectivo TEXT NOT NULL,
+    descripcion TEXT
+);
+
+CREATE TABLE RamoElectivo (
+    id_RamoElectivo INTEGER PRIMARY KEY,
+    id_Ramo INTEGER NOT NULL,
+    id_Electivo INTEGER NOT NULL,
+    FOREIGN KEY (id_Ramo) REFERENCES Ramo(id_Ramo),
+    FOREIGN KEY (id_Electivo) REFERENCES Electivo(id_Electivo)
+);
